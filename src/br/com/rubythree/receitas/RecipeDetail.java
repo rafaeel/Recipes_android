@@ -1,5 +1,9 @@
 package br.com.rubythree.receitas;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.net.NetworkInfo.DetailedState;
 import android.os.Bundle;
@@ -19,11 +23,25 @@ public class RecipeDetail extends Activity {
 		
 		Bundle extras = getIntent().getExtras();
 		
-		String name_detail = extras.getString("name");
-		String ingredients_detail = extras.getString("ingredients");
+		String jsonAr = extras.getString("data");
 		
-		detail_recipe_name.setText(name_detail);
-		detail_recipe_ingredients.setText(ingredients_detail);
+		try {
+			JSONObject jsonO = new JSONObject(jsonAr);
+			String name_detail = jsonO.getJSONObject("prescription").getString("name");
+			String ingredients_detail = jsonO.getJSONObject("prescription").getString("ingredients");
+			
+			detail_recipe_name.setText(name_detail);
+			detail_recipe_ingredients.setText(ingredients_detail);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//String name_detail = extras.getString("name");
+		//String ingredients_detail = extras.getString("ingredients");
+		
+		//detail_recipe_name.setText(name_detail);
+		//detail_recipe_ingredients.setText(ingredients_detail);
 		
 	}
 

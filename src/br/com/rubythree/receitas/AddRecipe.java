@@ -51,7 +51,7 @@ public class AddRecipe extends Activity {
 		String ingredients = ingredientsEdit.getText().toString();
 		// "name"=>"Arroz", "ingredients"=>"Pacote de arroz, agua"}
 		try{
-			new Resty().json("http://192.168.0.102:3000/prescriptions.json", //json("http://192.168.0.25:3000/prescriptions", 
+			new Resty().json("http://192.168.0.25:3000/prescriptions", //http://192.168.0.102:3000/prescriptions.json", 
 					  	form(data("prescription[name]", name),
 					  		 data("prescription[ingredients]", ingredients)));
 			Toast.makeText(AddRecipe.this, "Your recipe has been saved", Toast.LENGTH_LONG).show();

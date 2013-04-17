@@ -45,8 +45,8 @@ public class ListRecipes extends Activity {
         StrictMode.setThreadPolicy(policy);
         
         //String response = makeRequest("http://api.crunchbase.com/v/1/search.js?query=sony&api_key=xkbgxdv3ayxggp2m54ba65u7");
-        //String response = makeRequest("http://192.168.0.25:3000/prescriptions.json");
-        response = makeRequest("http://192.168.0.102:3000/prescriptions.json");
+        response = makeRequest("http://192.168.0.25:3000/prescriptions.json");
+        //response = makeRequest("http://192.168.0.102:3000/prescriptions.json");
         
         try{
         //JSONObject json = new JSONObject(response);
@@ -80,13 +80,15 @@ public class ListRecipes extends Activity {
 			        
 			       
 			        	JSONObject aux = jsonA.getJSONObject(position);
+			        	String varAux = jsonA.getJSONObject(position).toString();
 			        	String nome = aux.getJSONObject("prescription").getString("name");
 			        	String ingredientes = aux.getJSONObject("prescription").getString("ingredients");
 			         	Log.d("NAME", nome);
 						Log.d("INGREDIENTS", ingredientes);
 						Intent in = new Intent(ListRecipes.this, RecipeDetail.class);
-						in.putExtra("name", nome);
-						in.putExtra("ingredients", ingredientes);
+						in.putExtra("data", varAux);
+						//in.putExtra("name", nome);
+						//in.putExtra("ingredients", ingredientes);
 						startActivity(in);
 						
 				} catch (Exception e) {
